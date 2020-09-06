@@ -25,6 +25,13 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
+  manifest: {
+    name: 'Fire hydrant surveyor',
+    short_name: 'Hydrant Surveyor',
+    lang: 'en',
+    display: 'standalone',
+  },
   /*
   ** Global CSS
   */
@@ -53,7 +60,8 @@ export default {
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/pwa'
   ],
   /*
   ** Build configuration
