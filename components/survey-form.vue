@@ -21,11 +21,11 @@
         <b-form-select v-model="condition" :options="options" id="condition"></b-form-select>
       </b-col>
     </b-form-row>
-    <b-form-row align-h="end">
+    <b-row align-h="end" class="p-3">
         <b-col cols="*">
             <b-button @click="submit">Submit</b-button>
         </b-col>
-    </b-form-row>
+    </b-row>
   </b-container>
 </template>
 
