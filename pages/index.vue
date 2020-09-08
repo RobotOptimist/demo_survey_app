@@ -1,34 +1,44 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
       <h1 class="title">
-        demo-survey-app
+        Fire Hydrant Surveyor
       </h1>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+        <b-button
+          v-if="!$auth.loggedIn"
+          variant="primary"
+          size="lg"
+          @click="login"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
+          Login
+        </b-button>
+        <b-button
+          v-else
+          variant="warning"
+          @click="logout"
+          size="lg"
         >
-          GitHub
-        </a>
+          Logout
+        </b-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+export default {
+  methods: {
+    login() {
+      this.$auth.loginWith('auth0')
+    },
+    logout() {
+      this.$auth.logout();
+    }
+  },
+  computed: mapGetters(['isAuthenticated']),
+}
 </script>
 
 <style>
