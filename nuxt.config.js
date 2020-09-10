@@ -33,8 +33,12 @@ export default {
       name: 'Fire hydrant surveyor',
       short_name: 'Hydrant Surveyor',
       lang: 'en',
-      display: 'standalone',
+      display: 'standalone'
     },
+    workbox: {
+      cachingExtensions: '@/plugins/workbox-sync.js',
+      enabled: true
+    }
   },
   /*
   ** Global CSS

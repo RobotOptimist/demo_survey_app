@@ -46,7 +46,12 @@ export default {
   },
   methods: {
     submit() {
-      this.$emit("submit-form", { serialNumber, condition });
+      console.log('submitted')
+      const serialNumber = this.serialNumber;
+      const condition = this.condition;
+      this.$emit("submitForm", { serialNumber, condition });
+      this.serialNumber = '';
+      this.condition = null;
     },
   },
 };

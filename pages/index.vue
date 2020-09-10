@@ -3,6 +3,7 @@
     <b-row align-h="center" class="mt-5">
       <b-col cols="*">
         <h1 class="title">Fire Hydrant Surveyor</h1>
+        <p><em v-if="$nuxt.isOffline">You are offline</em></p>
       </b-col>
     </b-row>
     <b-row align-h="center" v-if="$auth.loggedIn">
@@ -23,9 +24,9 @@
 import surveyForm from '../components/survey-form'
 import { mapGetters } from "vuex";
 export default {
-  components: [
+  components: {
     surveyForm
-  ],
+  },
   methods: {
     login() {
       this.$auth.loginWith("auth0");
@@ -34,7 +35,18 @@ export default {
       this.$auth.logout();
     },
     async handleFormResult(formObj) {
-      
+      console.log('handled')
+      const post = {
+        title: formObj.serialNumber,
+        body: formObj.condition,
+        userId: 1
+      }
+      try {
+        const result = await this.$axios.$post('https://jsonplaceholder.typicode.com/posts', post);
+        console.log(result);
+      } catch(e) {
+        console.log(e);
+      }
     }
   },
   computed: mapGetters(["isAuthenticated"]),
