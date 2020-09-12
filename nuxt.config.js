@@ -1,4 +1,6 @@
 
+import { options } from './auth_config';
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -26,11 +28,17 @@ export default {
     ]
   },
 
-  manifest: {
-    name: 'Fire hydrant surveyor',
-    short_name: 'Hydrant Surveyor',
-    lang: 'en',
-    display: 'standalone',
+  pwa: {
+    manifest: {
+      name: 'Fire hydrant surveyor',
+      short_name: 'Hydrant Surveyor',
+      lang: 'en',
+      display: 'standalone'
+    },
+    workbox: {
+      cachingExtensions: '@/plugins/workbox-sync.js',
+      enabled: true //should be off actually per workbox docs due to complications when used in prod
+    }
   },
   /*
   ** Global CSS
@@ -63,6 +71,20 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/pwa'
   ],
+
+  auth: {
+    redirect: {
+      login: '/',
+      callback: options.redirectUri
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: options.domain,
+        client_id: options.client_id,
+      }
+    }
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
