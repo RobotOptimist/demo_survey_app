@@ -35,7 +35,8 @@ export default {
       this.$auth.logout();
     },
     async handleFormResult(formObj) {
-      console.log('handled')
+      //https://jsonplaceholder.typicode.com/posts is a test API I'm borrowing 
+      //I'm making the data fit because I'm too lazy to make my own test API
       const post = {
         title: formObj.serialNumber,
         body: formObj.condition,
