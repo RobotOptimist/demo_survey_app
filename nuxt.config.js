@@ -1,12 +1,9 @@
-
-import { options } from './auth_config';
-
 export default {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'spa',
+  ssr:false,
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -75,13 +72,13 @@ export default {
   auth: {
     redirect: {
       login: '/',
-      callback: options.redirectUri
+      callback: process.env.REDIRECTURI
     },
     strategies: {
       local: false,
       auth0: {
-        domain: options.domain,
-        client_id: options.client_id,
+        domain: process.env.DOMAIN,
+        client_id: process.env.CLIENTID,
       }
     }
   },
